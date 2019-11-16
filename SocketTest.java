@@ -1,5 +1,7 @@
+import java.io.PrintStream;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -14,8 +16,9 @@ public class SocketTest extends Socket {
 
 
 	private static Socket mySocket;
-	
-	
+	private static String host;
+	private static InetAddress destinationAddress;
+	private static PrintStream s;
 	
 	public static void main(String[] args) {
 
@@ -40,6 +43,14 @@ public class SocketTest extends Socket {
 		System.out.println("Sender Address   = " + senderAddress.getHostAddress());
 		System.out.println("Sender Port      = " + senderPort);
 		
+		try {
+			InetAddress[] destinationAddress = InetAddress.getAllByName(host);
+			System.out.println(destinationAddress);
+		} catch (UnknownHostException uhe) {
+			uhe.printStackTrace(s);
+			System.exit(1);
+		}
+		
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println();
 		System.out.println("Enter message to send here: ");
@@ -48,10 +59,11 @@ public class SocketTest extends Socket {
 			String outMessage = keyboard.nextLine();
 			
 			System.out.println("Message "+ counter  +":"+ outMessage);
+			//mySocket.send(outMessage, destinationAddress , senderPort);
 			counter++;
 		} while(inPacket != null);
 		
-	    JFrame frame = new JFrame();
+	    //JFrame frame = new JFrame();
 	    
 	    
 	    

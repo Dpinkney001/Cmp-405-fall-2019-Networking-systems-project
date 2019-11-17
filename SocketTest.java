@@ -4,7 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 
 public class SocketTest extends Socket {
 
@@ -51,6 +51,7 @@ public class SocketTest extends Socket {
 			System.exit(1);
 		}
 		
+		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println();
 		System.out.println("Enter message to send here: ");
@@ -59,7 +60,7 @@ public class SocketTest extends Socket {
 			String outMessage = keyboard.nextLine();
 			
 			System.out.println("Message "+ counter  +":"+ outMessage);
-			//mySocket.send(outMessage, destinationAddress , senderPort);
+			mySocket.send(outMessage, destinationAddress , senderPort);
 			counter++;
 		} while(inPacket != null);
 		

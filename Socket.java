@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.concurrent.ConcurrentLinkedDeque;
+//import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +20,7 @@ public class Socket {
 	
 	private ConcurrentLinkedQueue<DatagramPacket> messageQueue = 
 			new ConcurrentLinkedQueue<DatagramPacket>();
+	//private DatagramPacket outPackets;
 	
 	public Socket(int myPortNumber) {
 		this.myPortNumber = myPortNumber;
@@ -134,4 +135,28 @@ public class Socket {
 	public InetAddress getMyAddress() {
 		return this.myAddress;
 	}
+
+	/*
+	public void Broadcast(String outMessage, InetAddress[] destinationAddress, int destinationPort) {
+		byte[] outBuffer;
+		outBuffer = outMessage.getBytes();
+		DatagramPacket[] outPackets = null;
+		int j = 0;
+		do {
+			for(int i = 0; i <= destinationAddress.length; i++) {
+			
+			
+			DatagramPacket[] outPackets1[i] = (DatagramPacket) new DatagramPacket(outBuffer,outBuffer.length,destinationAddress[i],destinationPort);
+			outPackets1[i] += outPackets1[i];
+			j++;
+			}
+		} while (j <= destinationAddress.length);
+		try {
+			((Object) this.mySocket).Broadcast(outPackets);
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			System.exit(-1);
+		}
+	}
+	*/
 }
